@@ -38,7 +38,18 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    "@nuxtjs/axios",
+    '@nuxtjs/proxy',
   ],
+  
+  env: {
+    // これを設定しないとNuxtでprocess.env.NODE_ENVを取得したときにデフォルトの値になってしまう おまじない？
+    NODE_ENV: process.env.NODE_ENV
+  },
+
+  proxy: {
+    '/api': { target: 'http://localhost:7071' }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
