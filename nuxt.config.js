@@ -1,3 +1,6 @@
+import colors from 'vuetify/es5/util/colors'
+require('dotenv').config()
+
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -40,7 +43,14 @@ export default {
   modules: [
     "@nuxtjs/axios",
     '@nuxtjs/proxy',
+    '@nuxtjs/vuetify',
+    '@nuxtjs/markdownit',
   ],
+  markdownit: {
+    html: true,
+    injected: true,
+    preset: 'default',
+  },
   
   env: {
     // これを設定しないとNuxtでprocess.env.NODE_ENVを取得したときにデフォルトの値になってしまう おまじない？
@@ -50,8 +60,44 @@ export default {
   proxy: {
     '/api': { target: 'http://localhost:7071' }
   },
+  
+  vuetify: {
+    customVariables: ['~/assets/variables.scss'],
+    theme: {
+      dark: true,
+      themes: {
+        dark: {
+          primary: colors.blue.darken2,
+          accent: colors.grey.darken3,
+          secondary: colors.amber.darken3,
+          info: colors.teal.lighten1,
+          warning: colors.amber.base,
+          error: colors.deepOrange.accent4,
+          success: colors.green.accent3
+        },
+        light: {
+          primary: '#1976D2',
+          secondary: '#424242',
+          accent: '#82B1FF',
+          error: '#FF5252',
+          info: '#2196F3',
+          success: '#4CAF50',
+          warning: '#FFC107',
+        },
+        options: {
+          customProperties: true
+        }
+      }
+    }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    /*
+    ** You can extend webpack config here
+    */
+    extend (config, ctx) {
+      config.performance.maxAssetSize = 700 * 1024
+    }    
   }
 }

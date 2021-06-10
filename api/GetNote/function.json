@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ],
+      "route": "note/{id:int?}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "notes",
+      "databaseName": "kotaro",
+      "collectionName": "notes",
+      "connectionStringSetting": "CosmosDBConnection",
+      "direction": "in",
+      "Id": "{id}",
+      "PartitionKey": "1"
+    }
+  ]
+}
