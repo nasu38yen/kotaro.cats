@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "note/{blog}/{id}"
+      "route": "notecount/{id}"
     },
     {
       "type": "http",
@@ -17,13 +17,13 @@
     },
     {
       "type": "cosmosDB",
-      "name": "notes",
+      "name": "values",
       "databaseName": "kotaro",
       "collectionName": "notes",
       "connectionStringSetting": "CosmosDBConnection",
       "direction": "in",
-      "Id": "{id}",
-      "PartitionKey": "{blog}"
+      "PartitionKey": "1",
+      "SqlQuery": "select count(r.id) from notes r where r.blogid = {id}"
     }
   ]
 }

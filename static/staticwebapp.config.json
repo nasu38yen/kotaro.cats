@@ -11,13 +11,14 @@
       {
         "route": "/admin",
         "allowedRoles": ["admin"]
-      }
-    ],
-    "platformErrorOverrides": [
+      },
       {
-       "errorType": "NotFound",
-       "serve": "/200.html",
-       "statusCode": 200
+        "route": "/note/edit",
+        "allowedRoles": ["admin"]
+      },
+      {
+        "route": "/note/new",
+        "allowedRoles": ["admin"]
       }
     ],
     "navigationFallback": {

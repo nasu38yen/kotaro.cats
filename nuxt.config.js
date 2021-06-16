@@ -16,7 +16,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'kotaro.cats',
+    title: '虎太郎一家',
     htmlAttrs: {
       lang: 'en'
     },
@@ -51,13 +51,23 @@ export default {
     '@nuxtjs/proxy',
     '@nuxtjs/vuetify',
     '@nuxtjs/markdownit',
+    '@nuxtjs/moment'
   ],
   markdownit: {
     html: true,
     injected: true,
     preset: 'default',
   },
+  moment: {
+    locales: ['ja']
+  },
+  axios: {
+    baseURL: '/api',
+  },
   
+  plugins: [
+    '~/plugins/moment-filter', 
+  ],
   env: {
     // これを設定しないとNuxtでprocess.env.NODE_ENVを取得したときにデフォルトの値になってしまう おまじない？
     NODE_ENV: process.env.NODE_ENV

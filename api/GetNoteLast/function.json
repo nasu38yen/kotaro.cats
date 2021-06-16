@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "note/{blog}/{id}"
+      "route": "lastnote/{id}"
     },
     {
       "type": "http",
@@ -22,8 +22,7 @@
       "collectionName": "notes",
       "connectionStringSetting": "CosmosDBConnection",
       "direction": "in",
-      "Id": "{id}",
-      "PartitionKey": "{blog}"
+      "SqlQuery": "select TOP 1 * from notes r where r.blogid = {id} order by r._ts DESC"
     }
   ]
 }

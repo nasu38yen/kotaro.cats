@@ -1,96 +1,60 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        kotaro.cats
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-      <div>
-        <button id="api" @click="callApi">Call API</button>
-        <b id="name">...</b>
-        <div>
-          Message From Api: <strong>{{ message }}</strong>
-        </div>
-      </div>
-    </div>
-  </div>
+  <v-container class="note-container">
+    <v-row>
+      <v-col>
+        <div>{{$store.state.counter}}</div>
+        <button @click="increment">INC</button>
+        <button @click="inc10">INC10</button>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import { mapMutations, mapActions } from "vuex";
 import axios from "axios";
+
 export default {
   data: () => ({
     message: ''
   }),
+
+  mounted: async function () {
+    //console.log('aaaaaa')
+    this.inc10()
+    const userInfo = await this.getUserInfo()
+    this.setUserInfo(userInfo)
+    if (userInfo) {
+      console.log("login: " + userInfo.userId)
+    }
+  },
+
   methods: {
+    ...mapActions({
+      inc10: 'inc10',
+    }),
+    ...mapMutations(['setUserInfo']), 
+
+    async getUserInfo () {
+      const res = await axios.get("/.auth/me");
+      return res.data.clientPrincipal;
+    },
+
     async callApi () {
       try {
-        const res = await axios.get("/api/messagae");
+        const res = await this.$axios.get("/messagae");
         this.message = res.data.text;
         console.log(message);
       } catch (error) {
         console.error(error);
       }
+    },
+    increment () {
+      this.$store.commit('increment')
     }
   }
 }
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

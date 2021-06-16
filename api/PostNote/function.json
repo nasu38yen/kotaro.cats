@@ -1,14 +1,14 @@
 {
   "bindings": [
     {
-      "authLevel": "anonymous",
+      "authLevel": "admin",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
       "methods": [
-        "get"
+        "post"
       ],
-      "route": "note/{blog}/{id}"
+      "route": "note"
     },
     {
       "type": "http",
@@ -21,9 +21,8 @@
       "databaseName": "kotaro",
       "collectionName": "notes",
       "connectionStringSetting": "CosmosDBConnection",
-      "direction": "in",
-      "Id": "{id}",
-      "PartitionKey": "{blog}"
+      "direction": "out",
+      "createIfNotExists": true
     }
   ]
 }
