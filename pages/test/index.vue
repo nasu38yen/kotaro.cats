@@ -1,8 +1,10 @@
 <template>
   <v-container class="note-container">
-    <v-row justify="center" >
+    <v-row>
       <v-col>
-          <note-content :note="note"></note-content>
+        <div>{{$store.state.counter}}</div>
+        <button @click="increment">INC</button>
+        <button @click="inc10">INC10</button>
       </v-col>
     </v-row>
   </v-container>
@@ -14,15 +16,12 @@ import axios from "axios";
 
 export default {
   data: () => ({
+    message: '',
   }),
 
-  async asyncData({$axios}) {
-    const response = await $axios.get('/note/kotaro/V08Br87w')
-    const note = response.data
-    return { note }
-  },
-
   mounted: async function () {
+    //console.log('aaaaaa')
+    this.inc10()
     const userInfo = await this.getUserInfo()
     this.setUserInfo(userInfo)
     if (userInfo) {
@@ -32,6 +31,7 @@ export default {
 
   methods: {
     ...mapActions({
+      inc10: 'inc10',
     }),
     ...mapMutations(['setUserInfo']), 
 
@@ -39,6 +39,19 @@ export default {
       const res = await axios.get("/.auth/me");
       return res.data.clientPrincipal;
     },
+
+    async callApi () {
+      try {
+        const res = await this.$axios.get("/messagae");
+        this.message = res.data.text;
+        console.log(message);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    increment () {
+      this.$store.commit('increment')
+    }
   }
 }
 </script>
