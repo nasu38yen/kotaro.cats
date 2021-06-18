@@ -16,7 +16,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
-    message: ''
+    message: '',
   }),
 
   mounted: async function () {

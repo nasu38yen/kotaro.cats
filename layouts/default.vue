@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar :clipped-left="clipped" fixed app  >
       <v-container class="note-container py-0 fill-height">
-          <v-toolbar-title>虎太郎の世界</v-toolbar-title>
+          <v-toolbar-title @click="$router.push('/')">虎太郎の世界</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn nuxt to="/note/last">日記</v-btn>
       </v-container>
@@ -23,6 +23,9 @@
 div.note-container {
   max-width: 900px;
 }
+.note-container img{
+  max-width: 100%;
+}
 .logo {
   cursor: pointer;
 }
@@ -32,6 +35,7 @@ div.note-container {
 .copylight {
   margin-right: 10px;
 }
+
 </style>
 
 <script>

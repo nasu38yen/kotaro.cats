@@ -31,7 +31,7 @@ export default ({
             this.note.createdAt = this.note.updatedAt;
         }
 
-        const url = '/api/note'
+        const url = '/note'
         await this.$axios.post(url, this.note)
         if (this.note.id) {
             this.$router.push('/note/' + this.note.id)
