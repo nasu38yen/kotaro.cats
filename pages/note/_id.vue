@@ -59,13 +59,21 @@ export default ({
 
     async getNext () {
       if (!this.note) return null
-      const response = await this.$axios.get('/nextnoteid/kotaro/' + this.note._ts)
+      const response = await this.$axios.get('/nextnoteid/kotaro', {
+        params: {
+          createdAt: this.note.createdAt
+        }        
+      })
       const note = response.data
       return note
     },
     async getPrior () {
       if (!this.note) return null
-      const response = await this.$axios.get('/priornoteid/kotaro/' + this.note._ts)
+      const response = await this.$axios.get('/priornoteid/kotaro', {
+        params: {
+          createdAt: this.note.createdAt
+        }        
+      })
       const note = response.data
       return note
     },
