@@ -7,7 +7,7 @@
             <v-btn nuxt to="new">新規</v-btn>
           </div>
           <note-content :note="note"></note-content>
-          <div>
+          <div class="mt-4">
             <v-btn @click="toPrior" :disabled='!prior'>前の記事</v-btn>
             <v-btn @click="toNext" :disabled='!next'>次の記事</v-btn>            
           </div>
