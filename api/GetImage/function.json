@@ -19,7 +19,7 @@
       "name": "blob",
       "type": "blob",
       "path": "jpeg/{id}",
-      "connection": "kotaro",
+      "connection": "",
       "direction": "in",
       "dataType": "binary"
     }    
