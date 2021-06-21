@@ -20,9 +20,9 @@ export default ({
         this.note = {
             id: "", title: "", text: "", author: "", blogid: "kotaro"
         }
-        const response = await this.$axios.get('/notecount/kotaro')
-        const noteCount = response.data
-        const uid = this.getUID(noteCount)
+        const response = await this.$axios.get('/notemaxts/kotaro')
+        const lastUpdate = response.data
+        const uid = this.getUID(lastUpdate._ts)
         this.note.id = uid
     },
 

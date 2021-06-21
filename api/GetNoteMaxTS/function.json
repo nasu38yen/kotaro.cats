@@ -8,7 +8,7 @@
       "methods": [
         "get"
       ],
-      "route": "notecount/{id}"
+      "route": "notemaxts/{id}"
     },
     {
       "type": "http",
@@ -17,13 +17,12 @@
     },
     {
       "type": "cosmosDB",
-      "name": "values",
+      "name": "notes",
       "databaseName": "kotaro",
       "collectionName": "notes",
       "connectionStringSetting": "CosmosDBConnection",
       "direction": "in",
-      "PartitionKey": "1",
-      "SqlQuery": "select count(r.id) from notes r where r.blogid = {id}"
+      "SqlQuery": "select  TOP 1 r._ts from r where r.blogid = {id} order by r._ts DESC"
     }
   ]
 }
