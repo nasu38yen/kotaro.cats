@@ -37,7 +37,8 @@ export default ({
         if (!this.note.createdAt) {
             this.note.createdAt = this.note.updatedAt;
         }
-        this.note.author = this.userInfo.userDetails;
+        //this.note.author = this.userInfo.userDetails;
+        this.note.author = 'kotaro';
 
         const url = '/note'
         await this.$axios.post(url, this.note)
