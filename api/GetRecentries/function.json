@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ],
+      "route": "note_recentries/{blog}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "notes",
+      "databaseName": "kotaro",
+      "collectionName": "notes",
+      "connectionStringSetting": "CosmosDBConnection",
+      "direction": "in",
+      "SqlQuery": "select TOP 10 r.id, r.title, r.createdAt from r where r.blogid = {blog} order by r.createdAt DESC"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 <template>
     <div id="content-panel">
-        <h1 class="note-title mb-6">{{ note.title }}</h1>
+        <h1 class="note-title mb-4">{{ note.title }}</h1>
         <div class="note-body mb-6" v-html="$md.render(note.text)"></div>
         <div class="note-info">
           <span class="note-created mr-4">登録：{{ note.createdAt | format-date }}</span>

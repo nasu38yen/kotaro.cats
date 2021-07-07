@@ -2,9 +2,10 @@
   <v-app>
     <v-app-bar :clipped-left="clipped" fixed app  >
       <v-container class="note-container py-0 fill-height">
-          <v-toolbar-title @click="$router.push('/')">虎太郎の世界</v-toolbar-title>
+          <v-toolbar-title @click="$router.push('/')" style="cursor: pointer">虎太郎の世界</v-toolbar-title>
           <v-spacer></v-spacer>
-          <v-btn nuxt to="/note/last">日記</v-btn>
+          <v-btn class="mr-2" nuxt to="/note/recentries">最近の</v-btn>
+          <v-btn nuxt to="/note/last">最新の</v-btn>
       </v-container>
     </v-app-bar>
     <v-main>
