@@ -1,0 +1,29 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get",
+        "post"
+      ],
+      "route": "note_children/{blog}/{id}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "notes",
+      "databaseName": "kotaro",
+      "collectionName": "notes",
+      "connectionStringSetting": "CosmosDBConnection",
+      "direction": "in",
+      "SqlQuery": "select r.id, r.title, r.createdAt from r where r.blogid = {blog} and r.parentId = {id} order by r.createdAt DESC"
+    }
+  ]
+}

@@ -14,9 +14,7 @@
 export default ({
   name: 'NoteContent',
   props: {
-    note: {
-      type: Object,
-    } 
+    note: {} 
   },
 })
 </script>

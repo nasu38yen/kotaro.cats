@@ -2,7 +2,7 @@
   <v-container class="note-container">
     <v-row justify="center" >
       <v-col>
-          <note-form :note="note"></note-form>
+        <note-form :note="note"></note-form>
       </v-col>
     </v-row>
   </v-container>

@@ -1,11 +1,10 @@
 <template>
     <v-form ref="form1" @submit.prevent="submit">
-        <v-text-field v-model="note.id" label="slug"
-                    required></v-text-field>
-        <v-text-field v-model="note.title" label="タイトル"
-                    required></v-text-field>
-        <v-textarea v-model="note.text" label="内容"
-                    required rows="20"></v-textarea>
+        <v-text-field v-model="note.parentId" label="親slug"></v-text-field>
+        <v-text-field v-model="note.id" label="slug" required></v-text-field>
+        <v-text-field v-model="note.author" label="投稿者名" required></v-text-field>
+        <v-text-field v-model="note.title" label="タイトル" required></v-text-field>
+        <v-textarea v-model="note.text" label="内容" required rows="20"></v-textarea>
         <div>
             <v-btn type="submit">登録</v-btn>
             <!-- <v-btn v-if="note.createdAt" nuxt :to="{name:'note-id', params:{id:note.id}}">戻る</v-btn>
@@ -21,9 +20,7 @@ import { mapState } from "vuex";
 export default ({
     name: 'NoteForm',
     props: {
-        note: {
-            type: Object,
-        } 
+        note: {} 
     },
 
     computed: {
@@ -38,7 +35,7 @@ export default ({
             this.note.createdAt = this.note.updatedAt;
         }
         //this.note.author = this.userInfo.userDetails;
-        this.note.author = 'kotaro';
+        //this.note.author = 'kotaro';
 
         const url = '/note'
         await this.$axios.post(url, this.note)
