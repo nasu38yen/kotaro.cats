@@ -30,7 +30,7 @@ export default ({
     methods: {
       async submit () {
         this.$refs.form1.validate()
-        this.note.updatedAt = moment().format("YYYY/MM/DD HH:mm:ss");
+        this.note.updatedAt = moment().format("YYYY-MM-DD HH:mm:ss");
         if (!this.note.createdAt) {
             this.note.createdAt = this.note.updatedAt;
         }
