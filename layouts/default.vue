@@ -4,8 +4,21 @@
       <v-container class="note-container py-0 fill-height">
           <v-toolbar-title @click="$router.push('/')" style="cursor: pointer">虎太郎の世界</v-toolbar-title>
           <v-spacer></v-spacer>
+          <v-menu bottom left>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn dark icon v-bind="attrs" v-on="on">
+                <v-icon>mdi-dots-vertical</v-icon>
+              </v-btn>
+            </template>
+            <v-list link>
+              <v-list-item to="/note/recentries"><v-list-item-title>最近の記事</v-list-item-title></v-list-item>
+              <v-list-item to="/note/last"><v-list-item-title>最新の記事</v-list-item-title></v-list-item>
+            </v-list>
+          </v-menu>
+          <!--
           <v-btn class="mr-2" nuxt to="/note/recentries">最近の記事</v-btn>
           <v-btn nuxt to="/note/last">最新の記事</v-btn>
+          -->
       </v-container>
     </v-app-bar>
     <v-main>
