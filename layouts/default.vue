@@ -1,9 +1,11 @@
 <template>
   <v-app>
-    <v-app-bar :clipped-left="clipped" fixed app  >
+    <v-app-bar clipped-left fixed app>
       <v-container class="note-container py-0 fill-height">
+          <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
           <v-toolbar-title @click="$router.push('/')" style="cursor: pointer">虎太郎の世界</v-toolbar-title>
           <v-spacer></v-spacer>
+          <!--
           <v-menu bottom left>
             <template v-slot:activator="{ on, attrs }">
               <v-btn dark icon v-bind="attrs" v-on="on">
@@ -15,12 +17,19 @@
               <v-list-item to="/note/last"><v-list-item-title>最新の記事</v-list-item-title></v-list-item>
             </v-list>
           </v-menu>
-          <!--
           <v-btn class="mr-2" nuxt to="/note/recentries">最近の記事</v-btn>
           <v-btn nuxt to="/note/last">最新の記事</v-btn>
           -->
       </v-container>
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer" absolute bottom temporary clipped>
+      <v-list nav>
+        <v-list-item-group  v-model="group">
+            <v-list-item to="/note/recentries"><v-list-item-title>最近の記事</v-list-item-title></v-list-item>
+            <v-list-item to="/note/last"><v-list-item-title>最新の記事</v-list-item-title></v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
       <Nuxt />
     </v-main>
