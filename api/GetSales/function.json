@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ],
+      "route": "sales"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "sales",
+      "databaseName": "kotaro",
+      "collectionName": "messages",
+      "connectionStringSetting": "CosmosDBConnection",
+      "direction": "in",
+      "SqlQuery": "select s.keiDate, c.tokName, p.code, p.name, sum(d.amount) from s join s.customer c join d in s.details join d.product p group by s.keiDate, c.tokName, p.code, p.name"
+    }
+  ]
+}
