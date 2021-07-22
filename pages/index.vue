@@ -26,7 +26,8 @@ export default {
     const userInfo = await this.getUserInfo()
     this.setUserInfo(userInfo)
     if (userInfo) {
-      console.log("login: " + userInfo.userId)
+      console.log("userId: " + userInfo.userId)
+      console.log("userDetails: " + userInfo.userDetails)
     }
   },
 
